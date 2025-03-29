@@ -1,11 +1,11 @@
-﻿<Window x:Class="WpfApp.MainWindow"
+﻿<Window x:Class="WpfApp.View.LoginWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp"
+        xmlns:local="clr-namespace:WpfApp.View"
         mc:Ignorable="d"
-          Title="Login" Height="400" Width="600">
+             Title="Login" Height="554" Width="700" WindowStartupLocation="CenterScreen" >
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -15,11 +15,11 @@
         </Grid.Background>
 
         <!-- Logo -->
-        <Image Source="Images/logo.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="227,10,0,0" Width="137" Height="59" Panel.ZIndex="1"/>
-        <TextBlock FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="256,72,0,273" Panel.ZIndex="1" ><Run Text="ok"/><LineBreak/><Run/></TextBlock>
+        <Image Source="/Images/logo.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="275,15,0,0" Width="137" Height="59" Panel.ZIndex="1"/>
+        <TextBlock Text="Login" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="304,77,0,268" Panel.ZIndex="1" />
 
         <!-- Form Panel wrapped in Border for CornerRadius -->
-        <Border VerticalAlignment="Top" HorizontalAlignment="Left" Width="416" Height="307" Background="#F5F5F5" Padding="20" CornerRadius="10" Margin="88,72,0,0">
+        <Border VerticalAlignment="Top" HorizontalAlignment="Left" Width="416" Height="307" Background="#F5F5F5" Padding="20" CornerRadius="10" Margin="136,77,0,0">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Height="248" Margin="1,0,0,0" Width="356">
 
                 <!-- Username -->
@@ -45,6 +45,6 @@
         </Border>
 
         <!-- Footer -->
-        <TextBlock Text="Powered by ChildVaccination" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="211,0,0,47" FontSize="12" Foreground="Gray"/>
+        <TextBlock Text="Powered by ChildVaccination" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="268,0,0,76" FontSize="12" Foreground="Gray"/>
     </Grid>
 </Window>
