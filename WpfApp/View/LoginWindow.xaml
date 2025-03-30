@@ -16,7 +16,6 @@
 
         <!-- Logo -->
         <Image Source="/Images/logo.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="275,15,0,0" Width="137" Height="59" Panel.ZIndex="1"/>
-        <TextBlock Text="Login" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="304,77,0,268" Panel.ZIndex="1" />
 
         <!-- Form Panel wrapped in Border for CornerRadius -->
         <Border VerticalAlignment="Top" HorizontalAlignment="Left" Width="416" Height="307" Background="#F5F5F5" Padding="20" CornerRadius="10" Margin="136,77,0,0">
