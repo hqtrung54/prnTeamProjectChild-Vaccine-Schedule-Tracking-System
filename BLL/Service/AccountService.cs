@@ -10,45 +10,15 @@ namespace BLL.Service
     {
         private readonly AccountRepository _accountRepository;
 
-        public AccountService(AccountRepository accountRepository)
+        public AccountService()
         {
-            _accountRepository = accountRepository;
+            _accountRepository = new AccountRepository();
         }
 
-        // Lấy tất cả tài khoản
-        public async Task<List<Account>> GetAllAsync()
+        public Account? GetAccount(string email,string password)
         {
-            return await _accountRepository.GetAllAsync();
+            return _accountRepository.GetAccount(email, password);
         }
 
-        // Lấy tài khoản theo ID
-        public async Task<Account> GetByIdAsync(int accountId)
-        {
-            return await _accountRepository.GetByIdAsync(accountId);
-        }
-
-        // Lấy tài khoản theo Email
-        public async Task<Account> GetByEmailAsync(string email)
-        {
-            return await _accountRepository.GetByEmailAsync(email);
-        }
-
-        // Thêm tài khoản
-        public async Task AddAsync(Account account)
-        {
-            await _accountRepository.AddAsync(account);
-        }
-
-        // Cập nhật tài khoản
-        public async Task UpdateAsync(Account account)
-        {
-            await _accountRepository.UpdateAsync(account);
-        }
-
-        // Xóa tài khoản
-        public async Task DeleteAsync(int accountId)
-        {
-            await _accountRepository.DeleteAsync(accountId);
-        }
     }
 }

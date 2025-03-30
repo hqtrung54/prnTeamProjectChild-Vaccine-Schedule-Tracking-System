@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DAL.Models;
 
 namespace WpfApp
 {
@@ -16,6 +17,7 @@ namespace WpfApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Account Account { get; set; }
         public MainWindow()
         {
             InitializeComponent();
