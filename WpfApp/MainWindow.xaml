@@ -5,46 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-          Title="Login" Height="400" Width="600">
+        Title="HOMEPAGE" Height="500" Width="600" >
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Tiêu đề -->
+        <TextBlock Text="Vaccine Schedule Tracking" FontSize="20" FontWeight="Bold" Foreground="White" 
+                   Background="DarkBlue" Padding="5" HorizontalAlignment="Center" Grid.Row="0"/>
+
+        <!--Các Nút Điều Khiển -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10,0,10" HorizontalAlignment="Center">
+            <Button x:Name="btnChild" Content="Hồ Sơ Trẻ Em" FontWeight="Bold" Foreground="White" Background="#FF419FF1" Margin="5"/>
+            <Button x:Name="btnCustomer" Content="Hồ Sơ Khách Hàng" FontWeight="Bold" Foreground="White" Background="#FF419FF1" Margin="5"/>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="20">
+            <!-- Giới Thiệu Thông Tin Trung Tâm Tiêm Chủng-->
+            <TextBlock Text="Giới Thiệu Thông Tin Trung Tâm Tiêm Chủng:" FontSize="20" Padding="5" HorizontalAlignment="Left" Foreground="#FFE0220F" FontWeight="Bold"/>
+            <TextBlock Text="1. Luôn có đầy đủ vắc xin chính hãng, thế hệ mới, kể cả loại thường xuyên khan hiếm cho trẻ em và người lớn." FontSize="12"  Padding="5" HorizontalAlignment="Left" Foreground="#FFF3FF09" FontWeight="Bold"  TextWrapping="Wrap" />
+            <TextBlock Text="2. Hệ thống kho lạnh GSP, dây chuyền lạnh Cold Chain bảo quản vắc xin hiện đại và lớn nhất Việt Nam." FontSize="12"  Padding="5" HorizontalAlignment="Left" Foreground="#FFF2FF00" FontWeight="Bold"  TextWrapping="Wrap" />
+            <TextBlock Text="3. Đội ngũ bác sĩ, điều dưỡng chuyên môn cao, thực hiện quy trình tiêm chủng an toàn." FontSize="12"  Padding="5" HorizontalAlignment="Left" Foreground="#FFF3FF06" FontWeight="Bold"  TextWrapping="Wrap" />
+            <TextBlock Text="4. Giá vắc xin ưu đãi, hợp lý, bình ổn trên toàn quốc, luôn có nhiều ưu đãi và quà tặng hấp dẫn." FontSize="12"  Padding="5" HorizontalAlignment="Left" Foreground="#FFF2FF03" FontWeight="Bold"  TextWrapping="Wrap" />
+            <TextBlock Text="5. Cơ sở vật chất khang trang, hiện đại, trang thiết bị cao cấp" FontSize="12"  Padding="5" HorizontalAlignment="Left" Foreground="#FFF2FF03" FontWeight="Bold"  TextWrapping="Wrap" />
+        </StackPanel>
         <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#FFFFFF" Offset="0.0"/>
-                <GradientStop Color="#D3D3D3" Offset="1.0"/>
-            </LinearGradientBrush>
+            <ImageBrush ImageSource="/Images/Background.png"/>
         </Grid.Background>
-
-        <!-- Logo -->
-        <Image Source="Images/logo.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="227,10,0,0" Width="137" Height="59" Panel.ZIndex="1"/>
-        <TextBlock FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="256,72,0,273" Panel.ZIndex="1" ><Run Text="ok"/><LineBreak/><Run/></TextBlock>
-
-        <!-- Form Panel wrapped in Border for CornerRadius -->
-        <Border VerticalAlignment="Top" HorizontalAlignment="Left" Width="416" Height="307" Background="#F5F5F5" Padding="20" CornerRadius="10" Margin="88,72,0,0">
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Height="248" Margin="1,0,0,0" Width="356">
-
-                <!-- Username -->
-                <TextBox Name="Username" Width="300" Height="40" Margin="0,10,0,10" HorizontalAlignment="Center">
-                    <TextBox.ToolTip>
-                        <ToolTip Content="Enter your username"/>
-                    </TextBox.ToolTip>
-                </TextBox>
-
-                <!-- Password -->
-                <PasswordBox Name="Password" Width="300" Height="40" Margin="0,10,0,10" HorizontalAlignment="Center">
-                    <PasswordBox.ToolTip>
-                        <ToolTip Content="Enter your password"/>
-                    </PasswordBox.ToolTip>
-                </PasswordBox>
-
-                <!-- Login Button -->
-                <Button Content="Sign In" Width="300" Height="40" HorizontalAlignment="Center" Margin="0,10,0,10" Background="#4CAF50" Foreground="White" Click="LoginButton_Click"/>
-
-                <!-- Forgot Password -->
-                <TextBlock Text="Forgot Password?" FontSize="12" HorizontalAlignment="Center" Foreground="Blue" Cursor="Hand" Margin="0,10,0,0"/>
-            </StackPanel>
-        </Border>
-
-        <!-- Footer -->
-        <TextBlock Text="Powered by ChildVaccination" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="211,0,0,47" FontSize="12" Foreground="Gray"/>
     </Grid>
 </Window>
