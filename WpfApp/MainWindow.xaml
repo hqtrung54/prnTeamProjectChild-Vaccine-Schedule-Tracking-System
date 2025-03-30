@@ -16,7 +16,7 @@
 
         <!-- Logo -->
         <Image Source="Images/logo.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="227,10,0,0" Width="137" Height="59" Panel.ZIndex="1"/>
-        <TextBlock FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="256,72,0,273" Panel.ZIndex="1" ><Run Text="ok"/><LineBreak/><Run/></TextBlock>
+        <TextBlock FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="282,72,0,273" Panel.ZIndex="1" ><Run Text="ok con de"/><LineBreak/><Run/></TextBlock>
 
         <!-- Form Panel wrapped in Border for CornerRadius -->
         <Border VerticalAlignment="Top" HorizontalAlignment="Left" Width="416" Height="307" Background="#F5F5F5" Padding="20" CornerRadius="10" Margin="88,72,0,0">
