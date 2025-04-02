@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Models;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace DAL.repos
 {
@@ -18,7 +20,7 @@ namespace DAL.repos
 
         public List<Child> GetChildren()
         {
-            return _vaccineManagementSystem1Context.Children.ToList();
+            return _vaccineManagementSystem1Context.Children.Include(c => c.Customer).ToList();
         }
 
         //Add
@@ -56,6 +58,11 @@ namespace DAL.repos
         public List<Child> GetChildrenByCustomerId(int customerId)
         {
             return _vaccineManagementSystem1Context.Children.Where(c => c.CustomerId== customerId).ToList();
+        }
+
+        public bool CustomerExists(int customerId)
+        {
+            return _vaccineManagementSystem1Context.Customers.Any(c => c.CustomerId == customerId);
         }
 
     }
