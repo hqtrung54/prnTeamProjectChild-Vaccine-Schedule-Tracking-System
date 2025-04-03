@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BLL.Service
+namespace BLL.Services
 {
     public class PostVaccinationRecordService
     {

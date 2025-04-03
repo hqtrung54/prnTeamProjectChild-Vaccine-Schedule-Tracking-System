@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using DAL.Models;
 using DAL.repos;
 
-namespace BLL.Service
+namespace BLL.Services
 {
     public class CustomerServices
     {

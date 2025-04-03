@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Security.Principal;
 using System.Threading.Tasks;
 
-namespace BLL.Service
+namespace BLL.Services
 {
     public class AccountService
     {
