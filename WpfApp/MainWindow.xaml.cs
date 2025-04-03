@@ -171,5 +171,21 @@ namespace WpfApp
                               "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void btnPostVaccinationRecord_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                PostVaccinationRecordWindow w = new PostVaccinationRecordWindow();
+                w.Show();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi mở cửa sổ Quản Lý Hồ Sơ Tiêm Chủng: {ex.Message}",
+                              "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
     }
 }

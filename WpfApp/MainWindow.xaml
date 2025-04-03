@@ -60,6 +60,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
+            
             <Button x:Name="btnVaccine" Content="QUẢN LÝ VẮC-XIN" FontWeight="Bold" 
         Foreground="White" Background="#FF419FF1" Margin="10"
         Padding="15,10" BorderThickness="0" BorderBrush="Transparent" Click="btnVaccine_Click">
@@ -69,6 +70,17 @@
                     </Style>
                 </Button.Resources>
             </Button>
+
+            <Button x:Name="btnPostVaccinationRecord" Content="QUẢN LÝ HỒ SƠ TIÊM CHỦNG" FontWeight="Bold" 
+        Foreground="White" Background="#FF419FF1" Margin="10"
+        Padding="15,10" BorderThickness="0" BorderBrush="Transparent" Click="btnPostVaccinationRecord_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
         </StackPanel>
 
         <!-- Đường ngăn cách -->
