@@ -119,7 +119,7 @@ public partial class VaccineManagementSystem1Context : DbContext
 
             entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
             entity.Property(e => e.Email).HasMaxLength(255);
-            entity.Property(e => e.FullName).HasMaxLength(255);
+            entity.Property(e => e.CustomerFullName).HasMaxLength(255);
             entity.Property(e => e.PhoneNumber).HasMaxLength(20);
         });
 

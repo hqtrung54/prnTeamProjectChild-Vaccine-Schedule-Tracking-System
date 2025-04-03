@@ -5,36 +5,115 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="HOMEPAGE" Height="500" Width="600" >
+        Title="TRANG CHỦ - HỆ THỐNG QUẢN LÝ TIÊM CHỦNG" Height="700" Width="936" WindowStartupLocation="CenterScreen" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Tiêu đề -->
-        <TextBlock Text="Vaccine Schedule Tracking" FontSize="20" FontWeight="Bold" Foreground="White" 
-                   Background="DarkBlue" Padding="5" HorizontalAlignment="Center" Grid.Row="0"/>
+        <!-- Thanh tiêu đề và đăng nhập -->
+        <Grid Grid.Row="0" Background="DarkBlue">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
-        <!--Các Nút Điều Khiển -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10,0,10" HorizontalAlignment="Center">
-            <Button x:Name="btnChild" Content="Hồ Sơ Trẻ Em" FontWeight="Bold" Foreground="White" Background="#FF419FF1" Margin="5"/>
-            <Button x:Name="btnCustomer" Content="Hồ Sơ Khách Hàng" FontWeight="Bold" Foreground="White" Background="#FF419FF1" Margin="5"/>
+            <TextBlock Text="HỆ THỐNG QUẢN LÝ TIÊM CHỦNG VẮC-XIN" FontSize="20" 
+                       FontWeight="Bold" Foreground="White" Padding="10" 
+                       HorizontalAlignment="Center" Grid.Column="0"/>
 
+
+        </Grid>
+
+        <Canvas Height="20"  Width="148" Margin="748,3,0,24" HorizontalAlignment="Left" >
+            <!-- Phần hiển thị thông tin đăng nhập và nút đăng xuất -->
+            <StackPanel Grid.Column="1" Orientation="Vertical" Canvas.Left="-52" Canvas.Top="10">
+                <TextBlock x:Name="txtLoginStatus" Text="thông tin role khá là dài á dài vcl luôn dài hơn nữa" 
+                           Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="10" Padding="0,0,10,0" TextWrapping="Wrap"/>
+                <Button x:Name="btnLogout" Content="Đăng xuất" Padding="5,2,0,0"  Margin="10,0,100,10"
+                        Background="#FFE74C3C" Foreground="White" Visibility="Visible" Width="91"/>
+            </StackPanel>
+        </Canvas>
+
+
+        <!--Các Nút Điều Hướng Chính -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,15,0,15" HorizontalAlignment="Center">
+            <Button x:Name="btnChild" Content="QUẢN LÝ HỒ SƠ TRẺ EM" FontWeight="Bold" 
+                    Foreground="White" Background="#FF419FF1" Margin="10"
+                    Padding="15,10" BorderThickness="0" BorderBrush="Transparent">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <Button x:Name="btnCustomer" Content="QUẢN LÝ KHÁCH HÀNG" FontWeight="Bold" 
+                    Foreground="White" Background="#FF419FF1" Margin="10"
+                    Padding="15,10" BorderThickness="0" BorderBrush="Transparent">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="btnVaccine" Content="QUẢN LÝ VẮC-XIN" FontWeight="Bold" 
+        Foreground="White" Background="#FF419FF1" Margin="10"
+        Padding="15,10" BorderThickness="0" BorderBrush="Transparent" Click="btnVaccine_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="20">
-            <!-- Giới Thiệu Thông Tin Trung Tâm Tiêm Chủng-->
-            <TextBlock Text="Giới Thiệu Thông Tin Trung Tâm Tiêm Chủng:" FontSize="20" Padding="5" HorizontalAlignment="Left" Foreground="#FFE0220F" FontWeight="Bold"/>
-            <TextBlock Text="1. Luôn có đầy đủ vắc xin chính hãng, thế hệ mới, kể cả loại thường xuyên khan hiếm cho trẻ em và người lớn." FontSize="12"  Padding="5" HorizontalAlignment="Left" Foreground="#FFF3FF09" FontWeight="Bold"  TextWrapping="Wrap" />
-            <TextBlock Text="2. Hệ thống kho lạnh GSP, dây chuyền lạnh Cold Chain bảo quản vắc xin hiện đại và lớn nhất Việt Nam." FontSize="12"  Padding="5" HorizontalAlignment="Left" Foreground="#FFF2FF00" FontWeight="Bold"  TextWrapping="Wrap" />
-            <TextBlock Text="3. Đội ngũ bác sĩ, điều dưỡng chuyên môn cao, thực hiện quy trình tiêm chủng an toàn." FontSize="12"  Padding="5" HorizontalAlignment="Left" Foreground="#FFF3FF06" FontWeight="Bold"  TextWrapping="Wrap" />
-            <TextBlock Text="4. Giá vắc xin ưu đãi, hợp lý, bình ổn trên toàn quốc, luôn có nhiều ưu đãi và quà tặng hấp dẫn." FontSize="12"  Padding="5" HorizontalAlignment="Left" Foreground="#FFF2FF03" FontWeight="Bold"  TextWrapping="Wrap" />
-            <TextBlock Text="5. Cơ sở vật chất khang trang, hiện đại, trang thiết bị cao cấp" FontSize="12"  Padding="5" HorizontalAlignment="Left" Foreground="#FFF2FF03" FontWeight="Bold"  TextWrapping="Wrap" />
-        </StackPanel>
+        <!-- Đường ngăn cách -->
+        <Border Grid.Row="2" BorderBrush="#FFF2FF03" BorderThickness="0,1,0,0" Margin="20,0"/>
+
+        <!-- Thông tin giới thiệu -->
+        <ScrollViewer Grid.Row="3" Margin="20" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <TextBlock Text="THÔNG TIN TRUNG TÂM TIÊM CHỦNG:" FontSize="20" Padding="5" 
+                           HorizontalAlignment="Left" Foreground="#FFE0220F" FontWeight="Bold"/>
+
+                <Border Background="#33000000" CornerRadius="5" Margin="0,10,0,5" Padding="10">
+                    <TextBlock Text="1. Luôn có đầy đủ vắc xin chính hãng, thế hệ mới, kể cả loại thường xuyên khan hiếm cho trẻ em và người lớn." 
+                               FontSize="14" HorizontalAlignment="Left" Foreground="#FFF3FF09" 
+                               FontWeight="Bold" TextWrapping="Wrap" />
+                </Border>
+
+                <Border Background="#33000000" CornerRadius="5" Margin="0,5" Padding="10">
+                    <TextBlock Text="2. Hệ thống kho lạnh GSP, dây chuyền lạnh Cold Chain bảo quản vắc xin hiện đại và lớn nhất Việt Nam." 
+                               FontSize="14" HorizontalAlignment="Left" Foreground="#FFF2FF00" 
+                               FontWeight="Bold" TextWrapping="Wrap" />
+                </Border>
+
+                <Border Background="#33000000" CornerRadius="5" Margin="0,5" Padding="10">
+                    <TextBlock Text="3. Đội ngũ bác sĩ, điều dưỡng chuyên môn cao, thực hiện quy trình tiêm chủng an toàn." 
+                               FontSize="14" HorizontalAlignment="Left" Foreground="#FFF3FF06" 
+                               FontWeight="Bold" TextWrapping="Wrap" />
+                </Border>
+
+                <Border Background="#33000000" CornerRadius="5" Margin="0,5" Padding="10">
+                    <TextBlock Text="4. Giá vắc xin ưu đãi, hợp lý, bình ổn trên toàn quốc, luôn có nhiều ưu đãi và quà tặng hấp dẫn." 
+                               FontSize="14" HorizontalAlignment="Left" Foreground="#FFF2FF03" 
+                               FontWeight="Bold" TextWrapping="Wrap" />
+                </Border>
+
+                <Border Background="#33000000" CornerRadius="5" Margin="0,5" Padding="10">
+                    <TextBlock Text="5. Cơ sở vật chất khang trang, hiện đại, trang thiết bị cao cấp" 
+                               FontSize="14" HorizontalAlignment="Left" Foreground="#FFF2FF03" 
+                               FontWeight="Bold" TextWrapping="Wrap" />
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+
         <Grid.Background>
-            <ImageBrush ImageSource="/Images/Background.png"/>
+            <ImageBrush ImageSource="/Images/Background.png" Opacity="0.8"/>
         </Grid.Background>
     </Grid>
 </Window>
