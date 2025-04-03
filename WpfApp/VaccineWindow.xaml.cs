@@ -36,13 +36,27 @@ namespace WpfApp
         /// </summary>
         private void ConfigureUIBasedOnRole()
         {
-            // Role = 1 là Admin, có tất cả quyền
-            // Role = 2 là Nhân viên, chỉ được xem, tìm kiếm
-            if (App.CurrentAccount?.Role != 1)
+            // Kiểm tra quyền hạn
+            if (App.CurrentAccount != null)
             {
-                btnAdd.Visibility = Visibility.Collapsed;
-                btnUpdate.Visibility = Visibility.Collapsed;
-                btnDelete.Visibility = Visibility.Collapsed;
+                int? role = App.CurrentAccount.Role;
+
+                // Role 1 & 2 có đầy đủ quyền
+                if (role == 1 || role == 2)
+                {
+                    // Hiển thị tất cả các nút chức năng
+                    btnAdd.Visibility = Visibility.Visible;
+                    btnUpdate.Visibility = Visibility.Visible;
+                    btnDelete.Visibility = Visibility.Visible;
+                }
+                // Role 3 (customer) chỉ có quyền xem
+                else
+                {
+                    // Ẩn các nút thêm, sửa, xóa
+                    btnAdd.Visibility = Visibility.Collapsed;
+                    btnUpdate.Visibility = Visibility.Collapsed;
+                    btnDelete.Visibility = Visibility.Collapsed;
+                }
             }
         }
 
@@ -79,8 +93,9 @@ namespace WpfApp
                 txtAgeGroup.Text = selectedVaccine.AgeGroup;
                 txtPrice.Text = selectedVaccine.Price.ToString();
 
-                // Kích hoạt các nút chức năng
-                if (App.CurrentAccount?.Role == 1)
+                // Kích hoạt các nút chức năng chỉ cho Role 1 và 2
+                int? role = App.CurrentAccount?.Role;
+                if (role == 1 || role == 2)
                 {
                     btnUpdate.IsEnabled = true;
                     btnDelete.IsEnabled = true;
