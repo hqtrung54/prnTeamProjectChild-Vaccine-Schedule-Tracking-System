@@ -156,5 +156,20 @@ namespace WpfApp
                               "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void btnVaccine_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                VaccineWindow w = new VaccineWindow();
+                w.Show();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi mở cửa sổ Hồ Sơ Khách Hàng: {ex.Message}",
+                              "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }
