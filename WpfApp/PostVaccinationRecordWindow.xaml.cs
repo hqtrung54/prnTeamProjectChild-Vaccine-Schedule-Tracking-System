@@ -28,16 +28,16 @@ namespace WpfApp
             if (App.CurrentAccount != null)
             {
                 txtLoginStatus.Text = $"Đăng nhập: {App.CurrentAccount.Email}";
-                //ConfigureUIBasedOnRole();
+                ConfigureUIBasedOnRole();
             }
 
             // Thiết lập các ComboBox tìm kiếm
             cboSearchType.SelectionChanged += CboSearchType_SelectionChanged;
 
             // Load dữ liệu ban đầu
-            LoadChildren();
-            LoadVaccines();
-            LoadRecords();
+            //LoadChildren();
+            //LoadVaccines();
+            //LoadRecords();
 
             // Thiết lập trạng thái ban đầu của các nút
             btnUpdate.IsEnabled = false;
@@ -47,34 +47,36 @@ namespace WpfApp
         /// <summary>
         /// Thiết lập giao diện dựa trên vai trò người dùng
         /// </summary>
-        //private void ConfigureUIBasedOnRole()
-        //{
-        //    // Lấy vai trò người dùng
-        //    int? userRole = App.CurrentAccount?.Role;
-        //    int? customerId = App.CurrentAccount?.CustomerId;
+        private void ConfigureUIBasedOnRole()
+        {
+            // Lấy vai trò người dùng
+            int? userRole = App.CurrentAccount?.Role;
+            int? customerId = App.CurrentAccount?.CustomerId;
 
-        //    // Admin (1) và Nhân viên (2) có tất cả quyền
-        //    if (userRole == 1 || userRole == 2)
-        //    {
-        //        btnAdd.Visibility = Visibility.Visible;
-        //        btnUpdate.Visibility = Visibility.Visible;
-        //        btnDelete.Visibility = Visibility.Visible;
+            // Admin (1) và Nhân viên (2) có tất cả quyền
+            if (userRole == 1 || userRole == 2)
+            {
+                //btnAdd.Visibility = Visibility.Visible;
+                //btnUpdate.Visibility = Visibility.Visible;
+                //btnDelete.Visibility = Visibility.Visible;
 
-        //        // Load tất cả hồ sơ
-        //        LoadRecords();
-        //    }
-        //    // Khách hàng (3) chỉ xem được hồ sơ của con mình
-        //    else if (userRole == 3 && customerId.HasValue)
-        //    {
-        //        // Ẩn các nút thêm, sửa, xóa
-        //        btnAdd.Visibility = Visibility.Collapsed;
-        //        btnUpdate.Visibility = Visibility.Collapsed;
-        //        btnDelete.Visibility = Visibility.Collapsed;
+                // Load tất cả hồ sơ
+                LoadChildren();
+                LoadVaccines();
+                LoadRecords();
+            }
+            // Khách hàng (3) chỉ xem được hồ sơ của con mình
+            else if (userRole == 3 && customerId.HasValue)
+            {
+                // Ẩn các nút thêm, sửa, xóa
+                //btnAdd.Visibility = Visibility.Collapsed;
+                //btnUpdate.Visibility = Visibility.Collapsed;
+                //btnDelete.Visibility = Visibility.Collapsed;
 
-        //        // Chỉ load hồ sơ của con mình
-        //        LoadCustomerRecords(customerId.Value);
-        //    }
-        //}
+                // Chỉ load hồ sơ của con mình
+                LoadCustomerRecords(customerId.Value);
+            }
+        }
 
         /// <summary>
         /// Load danh sách trẻ em vào ComboBox
