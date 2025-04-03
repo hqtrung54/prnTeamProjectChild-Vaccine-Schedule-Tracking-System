@@ -220,20 +220,36 @@ namespace WpfApp
 
         }
 
+        //private void btnPayment_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        PaymentWindow w = new PaymentWindow();
+        //        w.Show();
+        //        this.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show($"Lỗi khi mở cửa sổ thanh toán: {ex.Message}",
+        //                      "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    }
+
+        //}
         private void btnPayment_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                MessageBox.Show("Đang mở cửa sổ thanh toán...");
                 PaymentWindow w = new PaymentWindow();
+                MessageBox.Show("Đã khởi tạo PaymentWindow thành công, sẽ hiển thị ngay bây giờ");
                 w.Show();
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi mở cửa sổ thanh toán: {ex.Message}",
-                              "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Chi tiết lỗi: {ex.Message}\n\nStackTrace: {ex.StackTrace}",
+                              "Lỗi khi mở cửa sổ thanh toán", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
         }
     }
 }

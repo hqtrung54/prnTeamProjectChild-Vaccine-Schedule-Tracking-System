@@ -66,10 +66,6 @@ namespace WpfApp
             // Admin (1) và Staff (2) có tất cả quyền
             if (userRole == 1 || userRole == 2)
             {
-                btnAdd.Visibility = Visibility.Visible;
-                btnUpdate.Visibility = Visibility.Visible;
-                btnDelete.Visibility = Visibility.Visible;
-
                 // Load tất cả lịch hẹn và thanh toán
                 LoadAppointments();
                 LoadPayments();
@@ -77,14 +73,14 @@ namespace WpfApp
             // Customer (3) chỉ xem thanh toán của mình
             else if (userRole == 3 && customerId.HasValue)
             {
-                // Ẩn các nút thêm, sửa, xóa
-                btnAdd.Visibility = Visibility.Collapsed;
-                btnUpdate.Visibility = Visibility.Collapsed;
-                btnDelete.Visibility = Visibility.Collapsed;
-
                 // Chỉ load lịch hẹn và thanh toán của khách hàng hiện tại
                 LoadAppointmentsByCustomerId(customerId.Value);
                 LoadPaymentsByCustomerId(customerId.Value);
+
+                // Các nút thêm, sửa, xóa không cần thiết cho khách hàng, chỉ cần bật các chức năng đọc
+                btnAdd.IsEnabled = false;
+                btnUpdate.IsEnabled = false;
+                btnDelete.IsEnabled = false;
             }
         }
 
@@ -216,30 +212,42 @@ namespace WpfApp
         /// </summary>
         private void CboSearchType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cboSearchType.SelectedItem == null) return;
+            // Kiểm tra cboSearchType và SelectedItem không null
+            if (cboSearchType == null || cboSearchType.SelectedItem == null) return;
 
             string searchType = ((ComboBoxItem)cboSearchType.SelectedItem).Content.ToString();
 
-            // Ẩn tất cả control tìm kiếm
-            cboAppointmentSearch.Visibility = Visibility.Collapsed;
-            cboStatusSearch.Visibility = Visibility.Collapsed;
-            cboMethodSearch.Visibility = Visibility.Collapsed;
-            dpSearchDate.Visibility = Visibility.Collapsed;
+            // Kiểm tra các control tìm kiếm có tồn tại và không null trước khi thay đổi visibility
+            if (cboAppointmentSearch != null)
+                cboAppointmentSearch.Visibility = Visibility.Collapsed;
+
+            if (cboStatusSearch != null)
+                cboStatusSearch.Visibility = Visibility.Collapsed;
+
+            if (cboMethodSearch != null)
+                cboMethodSearch.Visibility = Visibility.Collapsed;
+
+            if (dpSearchDate != null)
+                dpSearchDate.Visibility = Visibility.Collapsed;
 
             // Hiển thị control tìm kiếm phù hợp
             switch (searchType)
             {
                 case "Tìm theo lịch hẹn":
-                    cboAppointmentSearch.Visibility = Visibility.Visible;
+                    if (cboAppointmentSearch != null)
+                        cboAppointmentSearch.Visibility = Visibility.Visible;
                     break;
                 case "Tìm theo trạng thái":
-                    cboStatusSearch.Visibility = Visibility.Visible;
+                    if (cboStatusSearch != null)
+                        cboStatusSearch.Visibility = Visibility.Visible;
                     break;
                 case "Tìm theo phương thức":
-                    cboMethodSearch.Visibility = Visibility.Visible;
+                    if (cboMethodSearch != null)
+                        cboMethodSearch.Visibility = Visibility.Visible;
                     break;
                 case "Tìm theo ngày":
-                    dpSearchDate.Visibility = Visibility.Visible;
+                    if (dpSearchDate != null)
+                        dpSearchDate.Visibility = Visibility.Visible;
                     break;
             }
         }
