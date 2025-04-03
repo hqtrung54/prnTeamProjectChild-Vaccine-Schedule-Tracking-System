@@ -273,6 +273,8 @@ namespace WpfApp
         private void BtnBackHome_Click(object sender, RoutedEventArgs e)
         {
             // Quay lại trang chủ (có thể chuyển đến một cửa sổ khác nếu cần)
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
             this.Close();
         }
     }

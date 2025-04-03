@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="ServiceWindow" Height="450" Width="900">
+        Title="ServiceWindow" Height="450" Width="1200">
     <Grid Background="#F7F7F7">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
