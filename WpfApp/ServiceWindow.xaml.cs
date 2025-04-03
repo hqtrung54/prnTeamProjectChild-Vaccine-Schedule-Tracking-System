@@ -27,6 +27,7 @@ namespace WpfApp
             InitializeComponent();
             _serviceManagerService = new ServiceManagerServices();
             LoadServices();
+            ConfigureUIBasedOnRole();
         }
 
 
@@ -37,6 +38,37 @@ namespace WpfApp
             dgServices.ItemsSource = services;
         }
 
+
+        private void ConfigureUIBasedOnRole()
+        {
+            if (App.CurrentAccount == null || !App.CurrentAccount.Role.HasValue) return;
+
+            // Kiểm tra vai trò
+            int userRole = App.CurrentAccount.Role.Value;
+            if (userRole == 1 || userRole == 2)
+            {
+                if (btnAddService != null)
+                    btnAddService.Visibility = Visibility.Visible;
+                if (btnDeleteService != null)
+                    btnDeleteService.Visibility = Visibility.Visible;
+                if (btnSearchService != null)
+                    btnSearchService.Visibility = Visibility.Visible;
+                if (btnUpdateService != null)
+                    btnUpdateService.Visibility = Visibility.Visible;
+            }
+            else if (userRole == 3)
+            {
+                if (btnAddService != null)
+                    btnAddService.Visibility = Visibility.Hidden;
+                if (btnDeleteService != null)
+                    btnDeleteService.Visibility = Visibility.Hidden;
+                if (btnSearchService != null)
+                    btnSearchService.Visibility = Visibility.Hidden;
+                if (btnUpdateService != null)
+                    btnUpdateService.Visibility = Visibility.Hidden;
+
+            }
+        }
         // Sự kiện khi nhấn nút Thêm dịch vụ
         private void BtnAddService_Click(object sender, RoutedEventArgs e)
         {

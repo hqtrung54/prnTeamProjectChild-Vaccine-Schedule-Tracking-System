@@ -29,18 +29,63 @@ namespace WpfApp
             InitializeComponent();
             _customerServices = new CustomerServices();
             LoadCustomerData();
+            ConfigureUIBasedOnRole();
         }
 
         private void LoadCustomerData()
         {
-            try
+            if (App.CurrentAccount == null) return;
+
+            int userRole = App.CurrentAccount.Role ?? 0;
+            int customerId = App.CurrentAccount.CustomerId ?? 0; // ID khách hàng đang đăng nhập
+
+            List<Customer> customers = new List<Customer>(); // Khởi tạo danh sách rỗng để chứa khách hàng
+
+            if (userRole == 3) // Nếu là khách hàng thì chỉ load thông tin khách hàng của chính mình
             {
-                var customers = _customerServices.GetAllCustomers();
-                dgCustomers.ItemsSource = customers;
+                var customer = _customerServices.GetCustomerById(customerId);
+                if (customer != null)
+                {
+                    customers.Add(customer); // Thêm khách hàng của chính mình vào danh sách
+                }
             }
-            catch (Exception ex)
+            else // Nếu là Admin hoặc Nhân viên, load toàn bộ danh sách khách hàng
             {
-                MessageBox.Show($"Lỗi khi tải danh sách khách hàng: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                customers = _customerServices.GetAllCustomers();
+            }
+
+            // Gán danh sách khách hàng vào DataGrid
+            dgCustomers.ItemsSource = customers;
+        }
+
+        private void ConfigureUIBasedOnRole()
+        {
+            if (App.CurrentAccount == null || !App.CurrentAccount.Role.HasValue) return;
+
+            // Kiểm tra vai trò
+            int userRole = App.CurrentAccount.Role.Value;
+            if (userRole == 1 || userRole == 2)
+            {
+                if (btnAddCustomer != null)
+                    btnAddCustomer.Visibility = Visibility.Visible;
+                if (btnDeleteCustomer != null)
+                    btnDeleteCustomer.Visibility = Visibility.Visible;
+                if (btnSearchCustomer != null)
+                    btnSearchCustomer.Visibility = Visibility.Visible;
+                if (btnUpdateCustomer != null)
+                    btnUpdateCustomer.Visibility = Visibility.Visible;
+            }
+            else if (userRole == 3)
+            {
+                if (btnAddCustomer != null)
+                    btnAddCustomer.Visibility = Visibility.Hidden;
+                if (btnDeleteCustomer != null)
+                    btnDeleteCustomer.Visibility = Visibility.Hidden;
+                if (btnSearchCustomer != null)
+                    btnSearchCustomer.Visibility = Visibility.Hidden;
+                if (btnUpdateCustomer != null)
+                    btnUpdateCustomer.Visibility = Visibility.Hidden;
+
             }
         }
 

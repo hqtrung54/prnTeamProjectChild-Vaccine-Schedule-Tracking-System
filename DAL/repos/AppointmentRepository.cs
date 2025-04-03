@@ -126,5 +126,15 @@ namespace DAL.repos
                 .Where(a => a.Status.ToLower().Contains(statusLower))
                 .ToList();
         }
+
+        public List<Appointment> GetAppointmentsByCustomerId(int customerId)
+        {
+            return _vaccineManagementSystem1Context.Appointments
+                .Where(a => a.CustomerId == customerId)
+                .Include(a => a.Customer)
+                .Include(a => a.Child)
+                .Include(a => a.Vaccine)
+                .ToList();
+        }
     }
 }

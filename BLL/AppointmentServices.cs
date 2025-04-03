@@ -114,5 +114,10 @@ namespace BLL
         {
             return _appointmentRepository.SearchAppointmentsByStatus(status);
         }
+
+        public List<Appointment> GetAppointmentsByCustomerId(int customerId)
+        {
+            return _appointmentRepository.GetAppointmentsByCustomerId(customerId);
+        }
     }
 }

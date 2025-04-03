@@ -113,6 +113,12 @@ namespace DAL.repos
                 .ToList();
         }
 
+        public Customer GetCustomerById(int customerId)
+        {
+            return _vaccineManagementSystem1Context.Customers
+                .FirstOrDefault(c => c.CustomerId == customerId);
+        }
+
 
 
 
