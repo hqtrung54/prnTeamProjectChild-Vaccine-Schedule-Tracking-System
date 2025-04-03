@@ -14,4 +14,10 @@ public partial class Service
     public string? Description { get; set; }
 
     public decimal Price { get; set; }
+
+    public int VaccineId { get; set; } // Thêm VaccineID để phản ánh khóa ngoại
+
+    // Liên kết với bảng Vaccine (Navigation Property)
+    public virtual Vaccine? Vaccine { get; set; }
+
 }

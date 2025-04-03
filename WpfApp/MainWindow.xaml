@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="TRANG CHỦ - HỆ THỐNG QUẢN LÝ TIÊM CHỦNG" Height="700" Width="936" WindowStartupLocation="CenterScreen" >
+        Title="TRANG CHỦ - HỆ THỐNG QUẢN LÝ TIÊM CHỦNG" Height="700" Width="1000" WindowStartupLocation="CenterScreen" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -74,6 +74,25 @@
             <Button x:Name="btnPostVaccinationRecord" Content="QUẢN LÝ HỒ SƠ TIÊM CHỦNG" FontWeight="Bold" 
         Foreground="White" Background="#FF419FF1" Margin="10"
         Padding="15,10" BorderThickness="0" BorderBrush="Transparent" Click="btnPostVaccinationRecord_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <Button x:Name="btnService" Content="QUẢN LÝ Dịch Vụ" FontWeight="Bold" 
+        Foreground="White" Background="#FF419FF1" Margin="10"
+        Padding="15,10" BorderThickness="0" BorderBrush="Transparent" Click="btnServices_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            <Button x:Name="btnAppointment" Content="Quản Lý Cuộc Hẹn" FontWeight="Bold" 
+Foreground="White" Background="#FF419FF1" Margin="10"
+Padding="15,10" BorderThickness="0" BorderBrush="Transparent" Click="btnAppointment_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>

@@ -187,5 +187,37 @@ namespace WpfApp
             }
         }
 
+        private void btnServices_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ServiceWindow w = new ServiceWindow();
+                w.Show();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi mở cửa sổ Quản Lý Dịch Vụ: {ex.Message}",
+                              "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
+
+        private void btnAppointment_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                AppointmentWindow w = new AppointmentWindow();
+                w.Show();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi mở cửa sổ Quản Lý Cuộc Hẹn: {ex.Message}",
+                              "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+
+        }
     }
 }
