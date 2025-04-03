@@ -136,7 +136,9 @@ namespace WpfApp
                     r.VaccineId,
                     VaccineName = r.Vaccine?.VaccineName ?? "Không xác định",
                     r.ReactionDescription,
-                    r.ReportDate
+                    ReportDateText = r.ReportDate.HasValue
+         ? r.ReportDate.Value.ToString("dd/MM/yyyy")
+         : "Chưa ghi nhận"
                 }).ToList();
 
                 dgRecords.ItemsSource = displayRecords;
@@ -384,7 +386,9 @@ namespace WpfApp
                     r.VaccineId,
                     VaccineName = r.Vaccine?.VaccineName ?? "Không xác định",
                     r.ReactionDescription,
-                    r.ReportDate
+                    ReportDateText = r.ReportDate.HasValue
+        ? r.ReportDate.Value.ToString("dd/MM/yyyy")
+        : "Chưa ghi nhận"
                 }).ToList();
 
                 dgRecords.ItemsSource = displayRecords;

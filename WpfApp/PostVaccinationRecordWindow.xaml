@@ -58,7 +58,7 @@
                 <DataGridTextColumn Header="Tên trẻ" Binding="{Binding ChildName}" Width="150"/>
                 <DataGridTextColumn Header="Tên vắc-xin" Binding="{Binding VaccineName}" Width="150"/>
                 <DataGridTextColumn Header="Mô tả phản ứng" Binding="{Binding ReactionDescription}" Width="200"/>
-                <DataGridTextColumn Header="Ngày ghi nhận" Binding="{Binding RecordDate, StringFormat=dd/MM/yyyy}" Width="120"/>
+                <DataGridTextColumn Header="Ngày ghi nhận" Binding="{Binding ReportDateText}" Width="120"/>
             </DataGrid.Columns>
         </DataGrid>
 
