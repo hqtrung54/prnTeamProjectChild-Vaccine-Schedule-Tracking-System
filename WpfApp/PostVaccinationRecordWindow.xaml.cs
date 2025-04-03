@@ -35,9 +35,9 @@ namespace WpfApp
             cboSearchType.SelectionChanged += CboSearchType_SelectionChanged;
 
             // Load dữ liệu ban đầu
-            LoadChildren();
-            LoadVaccines();
-            LoadRecords();
+            //LoadChildren();
+            //LoadVaccines();
+            //LoadRecords();
 
             // Thiết lập trạng thái ban đầu của các nút
             btnUpdate.IsEnabled = false;
