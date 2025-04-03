@@ -126,5 +126,16 @@ namespace DAL.repos
                 .Where(a => a.Status.ToLower().Contains(statusLower))
                 .ToList();
         }
+
+        // Thêm vào AppointmentRepository
+        public Appointment GetAppointmentById(int appointmentId)
+        {
+            return _vaccineManagementSystem1Context.Appointments
+                .Include(a => a.Customer)
+                .Include(a => a.Child)
+                .Include(a => a.Vaccine)
+                .FirstOrDefault(a => a.AppointmentId == appointmentId);
+        }
+
     }
 }

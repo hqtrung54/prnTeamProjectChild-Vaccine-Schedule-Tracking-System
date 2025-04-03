@@ -219,5 +219,21 @@ namespace WpfApp
 
 
         }
+
+        private void btnPayment_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                PaymentWindow w = new PaymentWindow();
+                w.Show();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi mở cửa sổ thanh toán: {ex.Message}",
+                              "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
     }
 }

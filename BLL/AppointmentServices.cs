@@ -114,5 +114,15 @@ namespace BLL
         {
             return _appointmentRepository.SearchAppointmentsByStatus(status);
         }
+
+        // Phương thức lấy Appointment theo ID
+        public Appointment GetAppointmentById(int appointmentId)
+        {
+            // Giả sử AppointmentRepository đã có phương thức GetAppointmentById
+            // Nếu chưa có, bạn cũng cần thêm vào AppointmentRepository
+            return _appointmentRepository.GetAppointmentById(appointmentId);
+        }
+
+
     }
 }

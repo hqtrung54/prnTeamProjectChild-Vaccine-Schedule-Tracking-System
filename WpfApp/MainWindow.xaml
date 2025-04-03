@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="TRANG CHỦ - HỆ THỐNG QUẢN LÝ TIÊM CHỦNG" Height="700" Width="1000" WindowStartupLocation="CenterScreen" >
+        Title="TRANG CHỦ - HỆ THỐNG QUẢN LÝ TIÊM CHỦNG" Height="700" Width="1405" WindowStartupLocation="CenterScreen" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -93,6 +93,17 @@
             <Button x:Name="btnAppointment" Content="Quản Lý Cuộc Hẹn" FontWeight="Bold" 
 Foreground="White" Background="#FF419FF1" Margin="10"
 Padding="15,10" BorderThickness="0" BorderBrush="Transparent" Click="btnAppointment_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <Button x:Name="btnPayment" Content="Thanh Toán" FontWeight="Bold" 
+        Foreground="White" Background="#FF419FF1" Margin="10"
+        Padding="15,10" BorderThickness="0" BorderBrush="Transparent" 
+        Click="btnPayment_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>

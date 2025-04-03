@@ -28,7 +28,7 @@
             </StackPanel>
         </Grid>
 
-        <!-- Tìm kiếm -->
+        <!-- Phần tìm kiếm -->
         <Grid Grid.Row="1" Margin="10,10,10,5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -40,21 +40,29 @@
 
             <ComboBox x:Name="cboSearchType" Grid.Column="0" Width="150" Margin="0,0,10,0" 
                       SelectionChanged="CboSearchType_SelectionChanged">
-                <ComboBoxItem Content="Tìm theo trạng thái" IsSelected="True"/>
+                <ComboBoxItem Content="Tìm theo lịch hẹn" IsSelected="True"/>
+                <ComboBoxItem Content="Tìm theo trạng thái"/>
                 <ComboBoxItem Content="Tìm theo phương thức"/>
                 <ComboBoxItem Content="Tìm theo ngày"/>
             </ComboBox>
 
-            <ComboBox x:Name="cboStatusSearch" Grid.Column="1" Margin="0,0,10,0" Visibility="Visible">
-                <ComboBoxItem Content="Completed"/>
+            <!-- Control tìm kiếm thay đổi động theo loại tìm kiếm -->
+            <ComboBox x:Name="cboAppointmentSearch" Grid.Column="1" Margin="0,0,10,0"
+                      DisplayMemberPath="DisplayInfo" SelectedValuePath="AppointmentId" 
+                      Visibility="Visible"/>
+
+            <ComboBox x:Name="cboStatusSearch" Grid.Column="1" Margin="0,0,10,0" Visibility="Collapsed">
                 <ComboBoxItem Content="Pending"/>
+                <ComboBoxItem Content="Completed"/>
                 <ComboBoxItem Content="Failed"/>
+                <ComboBoxItem Content="Refunded"/>
             </ComboBox>
 
             <ComboBox x:Name="cboMethodSearch" Grid.Column="1" Margin="0,0,10,0" Visibility="Collapsed">
                 <ComboBoxItem Content="Cash"/>
                 <ComboBoxItem Content="Bank Transfer"/>
                 <ComboBoxItem Content="Credit Card"/>
+                <ComboBoxItem Content="Mobile Payment"/>
             </ComboBox>
 
             <DatePicker x:Name="dpSearchDate" Grid.Column="1" Margin="0,0,10,0" Visibility="Collapsed"/>
@@ -69,7 +77,7 @@
                     Click="BtnBack_Click"/>
         </Grid>
 
-        <!-- Danh sách Thanh toán -->
+        <!-- Danh sách thanh toán -->
         <DataGrid x:Name="dgPayments" Grid.Row="2" Margin="10,0,10,10" 
                   AutoGenerateColumns="False" IsReadOnly="True"
                   SelectionMode="Single" SelectionChanged="DgPayments_SelectionChanged">
@@ -79,11 +87,30 @@
                 <DataGridTextColumn Header="Số tiền" Binding="{Binding Amount, StringFormat='{}{0:N0} VNĐ'}" Width="120"/>
                 <DataGridTextColumn Header="Ngày thanh toán" Binding="{Binding PaymentDateText}" Width="120"/>
                 <DataGridTextColumn Header="Phương thức" Binding="{Binding PaymentMethod}" Width="120"/>
-                <DataGridTextColumn Header="Trạng thái" Binding="{Binding Status}" Width="100"/>
+                <DataGridTextColumn Header="Trạng thái" Binding="{Binding Status}" Width="100">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Status}" Value="Pending">
+                                    <Setter Property="Foreground" Value="Blue"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Status}" Value="Completed">
+                                    <Setter Property="Foreground" Value="Green"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Status}" Value="Failed">
+                                    <Setter Property="Foreground" Value="Red"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Status}" Value="Refunded">
+                                    <Setter Property="Foreground" Value="Purple"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 
-        <!-- Form nhập/chỉnh sửa -->
+        <!-- Form nhập/chỉnh sửa thanh toán -->
         <Grid Grid.Row="3" Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -95,8 +122,9 @@
                 <TextBlock Text="Thông tin thanh toán" FontWeight="Bold" Margin="0,0,0,10"/>
 
                 <TextBlock Text="Chọn lịch hẹn:"/>
-                <ComboBox x:Name="cboAppointment" Margin="0,0,0,10" DisplayMemberPath="DisplayInfo" 
-                          SelectedValuePath="AppointmentId"/>
+                <ComboBox x:Name="cboAppointment" Margin="0,0,0,10" 
+                          DisplayMemberPath="DisplayInfo" SelectedValuePath="AppointmentId"
+                          SelectionChanged="CboAppointment_SelectionChanged"/>
 
                 <TextBlock Text="Số tiền (VNĐ):"/>
                 <TextBox x:Name="txtAmount" Margin="0,0,0,10"/>
@@ -112,13 +140,15 @@
                     <ComboBoxItem Content="Cash"/>
                     <ComboBoxItem Content="Bank Transfer"/>
                     <ComboBoxItem Content="Credit Card"/>
+                    <ComboBoxItem Content="Mobile Payment"/>
                 </ComboBox>
 
                 <TextBlock Text="Trạng thái:"/>
                 <ComboBox x:Name="cboStatus" Margin="0,0,0,10">
-                    <ComboBoxItem Content="Completed"/>
                     <ComboBoxItem Content="Pending"/>
+                    <ComboBoxItem Content="Completed"/>
                     <ComboBoxItem Content="Failed"/>
+                    <ComboBoxItem Content="Refunded"/>
                 </ComboBox>
 
                 <!-- Nút chức năng -->
