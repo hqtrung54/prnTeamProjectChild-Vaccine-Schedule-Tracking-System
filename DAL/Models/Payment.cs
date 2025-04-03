@@ -15,8 +15,8 @@ public partial class Payment
 
     public string PaymentMethod { get; set; } = null!;
 
-    public string? Status { get; set; }  // Thêm trường Status và cho phép null
-
+    //public string? Status { get; set; }  // Thêm trường Status và cho phép null
+    public string Status { get; set; } = "Pending";  // NOT NULL và mặc định là "Pending"
 
     public virtual Appointment Appointment { get; set; } = null!;
 }
