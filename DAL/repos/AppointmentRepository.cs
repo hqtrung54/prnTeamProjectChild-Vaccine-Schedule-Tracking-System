@@ -128,7 +128,7 @@ namespace DAL.repos
         }
 
         // Thêm vào AppointmentRepository
-        public Appointment GetAppointmentById(int appointmentId)
+        public Appointment GetAppointmentsByCustomerId(int appointmentId)
         {
             return _vaccineManagementSystem1Context.Appointments
                 .Include(a => a.Customer)
