@@ -128,13 +128,18 @@ namespace DAL.repos
         }
 
         // Thêm vào AppointmentRepository
-        public Appointment GetAppointmentsByCustomerId(int appointmentId)
+        public Appointment GetAppointmentById(int appointmentId)
         {
             return _vaccineManagementSystem1Context.Appointments
                 .Include(a => a.Customer)
                 .Include(a => a.Child)
                 .Include(a => a.Vaccine)
                 .FirstOrDefault(a => a.AppointmentId == appointmentId);
+        }
+        // Phương thức lấy tất cả các cuộc hẹn của khách hàng theo CustomerId
+        public List<Appointment> GetAppointmentsByCustomerId(int customerId)
+        {
+            return _vaccineManagementSystem1Context.Appointments.Where(a => a.CustomerId == customerId).ToList();
         }
 
     }
