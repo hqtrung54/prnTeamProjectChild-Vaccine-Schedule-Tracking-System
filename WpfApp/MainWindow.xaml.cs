@@ -65,7 +65,7 @@ namespace WpfApp
             int userRole = App.CurrentAccount.Role.Value;
 
             // Role = 1: Admin (doctor) - Có tất cả quyền
-            if (userRole == 1)
+            if (userRole == 1 || userRole == 2)
             {
                 // Hiển thị tất cả các nút chức năng
                 if (btnChild != null)
@@ -74,25 +74,23 @@ namespace WpfApp
                 if (btnCustomer != null)
                     btnCustomer.Visibility = Visibility.Visible;
 
-                // Nếu có các nút chức năng khác dành cho admin, hiển thị ở đây
-            }
-            // Role = 2: Nurse/Staff - Chỉ có một số quyền giới hạn
-            else if (userRole == 2)
-            {
-                // Nurse chỉ có thể xem thông tin trẻ em
-                if (btnChild != null)
-                    btnChild.Visibility = Visibility.Visible;
+                if(btnAppointment != null)
+                    btnAppointment.Visibility = Visibility.Visible;
 
-                // Nurse không có quyền quản lý khách hàng
-                if (btnCustomer != null)
-                    btnCustomer.Visibility = Visibility.Collapsed;
+                if(btnPostVaccinationRecord != null)
+                    btnPostVaccinationRecord.Visibility = Visibility.Visible;
 
-                // Ẩn các chức năng khác nếu cần
+                if(btnVaccine != null)
+                    btnVaccine.Visibility = Visibility.Visible;
+
+                if(btnService != null)
+                    btnService.Visibility = Visibility.Visible;      
             }
-            // Các vai trò khác nếu có
-            else
+            else if (userRole == 3)
             {
-                // Xử lý các vai trò khác nếu cần
+                btnChild.Visibility = Visibility.Visible ;
+                btnCustomer.Visibility = Visibility.Visible ;
+
             }
         }
 
@@ -174,17 +172,17 @@ namespace WpfApp
 
         private void btnPostVaccinationRecord_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (App.CurrentAccount?.Role == 3)
             {
-                PostVaccinationRecordWindow w = new PostVaccinationRecordWindow();
-                w.Show();
-                this.Close();
+                MessageBox.Show("Bạn không có quyền truy cập vào trang này!",
+                                "Truy cập bị từ chối",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Warning);
+                return;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi khi mở cửa sổ Quản Lý Hồ Sơ Tiêm Chủng: {ex.Message}",
-                              "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+
+            PostVaccinationRecordWindow window = new PostVaccinationRecordWindow();
+            window.Show();
         }
 
         private void btnServices_Click(object sender, RoutedEventArgs e)

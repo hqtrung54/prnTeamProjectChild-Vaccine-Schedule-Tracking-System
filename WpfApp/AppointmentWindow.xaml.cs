@@ -27,14 +27,73 @@ namespace WpfApp
             InitializeComponent();
             _appointmentServices = new AppointmentServices();
             LoadAppointments();
+            ConfigureUIBasedOnRole();
         }
 
 
-        // Phương thức để tải danh sách Appointment vào DataGrid
         private void LoadAppointments()
         {
-            var appointments = _appointmentServices.GetAllAppointments();
-            dgAppointments.ItemsSource = appointments;
+            try
+            {
+                if (App.CurrentAccount == null)
+                {
+                    MessageBox.Show("Vui lòng đăng nhập để xem các cuộc hẹn!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                // Lấy CustomerId của người dùng hiện tại từ tài khoản đã đăng nhập
+                int userRole = App.CurrentAccount.Role ?? 0;
+                int currentCustomerId = App.CurrentAccount.CustomerId ?? 0;
+
+                IEnumerable<Appointment> appointments = new List<Appointment>();
+
+                if (userRole == 3) // Nếu là khách hàng thì chỉ load cuộc hẹn của chính khách hàng đó
+                {
+                    appointments = _appointmentServices.GetAppointmentsByCustomerId(currentCustomerId);
+                }
+                else if (userRole == 1 || userRole == 2) // Nếu là Admin hoặc Nhân viên, hiển thị tất cả các cuộc hẹn
+                {
+                    appointments = _appointmentServices.GetAllAppointments();
+                }
+
+                // Gán danh sách cuộc hẹn vào DataGrid
+                dgAppointments.ItemsSource = appointments;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi tải danh sách cuộc hẹn: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ConfigureUIBasedOnRole()
+        {
+            if (App.CurrentAccount == null || !App.CurrentAccount.Role.HasValue) return;
+
+            // Kiểm tra vai trò
+            int userRole = App.CurrentAccount.Role.Value;
+            if (userRole == 1 || userRole == 2)
+            {
+                if (btnAddAppointment != null)
+                    btnAddAppointment.Visibility = Visibility.Visible;
+                if (btnDeleteAppointment != null)
+                    btnDeleteAppointment.Visibility = Visibility.Visible;
+                if (btnSearchAppointment != null)
+                    btnSearchAppointment.Visibility = Visibility.Visible;
+                if (btnUpdateAppointment != null)
+                    btnUpdateAppointment.Visibility = Visibility.Visible;
+            }
+            else if (userRole == 3)
+            {
+                if (btnAddAppointment != null)
+                    btnAddAppointment.Visibility = Visibility.Hidden;
+                if (btnDeleteAppointment != null)
+                    btnDeleteAppointment.Visibility = Visibility.Hidden;
+                if (btnSearchAppointment != null)
+                    btnSearchAppointment.Visibility = Visibility.Hidden;
+                if (btnUpdateAppointment != null)
+                    btnUpdateAppointment.Visibility = Visibility.Hidden;
+
+            }
         }
 
         // Phương thức thêm cuộc hẹn mới

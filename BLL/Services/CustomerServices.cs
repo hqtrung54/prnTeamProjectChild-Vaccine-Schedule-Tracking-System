@@ -65,6 +65,11 @@ namespace BLL.Services
             }
         }
 
+        public Customer GetCustomerById(int customerId)
+        {
+            return _customerRepository.GetCustomerById(customerId);
+        }
+
 
     }
 }

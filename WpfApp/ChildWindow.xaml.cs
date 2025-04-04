@@ -18,11 +18,55 @@ namespace WpfApp
             InitializeComponent();
             _childService = new ChildService();
             LoadChildren();
+            ConfigureUIBasedOnRole();
         }
 
         private void LoadChildren()
         {
-            dgChilds.ItemsSource = _childService.GetChildren();
+            if (App.CurrentAccount == null) return;
+
+            int userRole = App.CurrentAccount.Role ?? 0;
+            int customerId = App.CurrentAccount.CustomerId ?? 0; // ID khách hàng đang đăng nhập
+
+            if (userRole == 3) // Nếu là khách hàng thì chỉ load trẻ thuộc về tài khoản khách hàng hiện tại
+            {
+                dgChilds.ItemsSource = _childService.GetChildrenByCustomerId(customerId);
+            }
+            else
+            {
+                // Nếu là Admin hoặc nhân viên thì load toàn bộ danh sách trẻ
+                dgChilds.ItemsSource = _childService.GetChildren();
+            }
+        }
+
+
+        private void ConfigureUIBasedOnRole() 
+        {
+            if (App.CurrentAccount == null || !App.CurrentAccount.Role.HasValue) return;
+
+            // Kiểm tra vai trò
+            int userRole = App.CurrentAccount.Role.Value;
+            if (userRole == 1 || userRole == 2)
+            {
+                if (btnAddChild != null)
+                    btnAddChild.Visibility = Visibility.Visible;
+                if(btnDeleteChild != null)
+                    btnDeleteChild.Visibility = Visibility.Visible;
+                if(btnSearchChild != null)
+                    btnSearchChild.Visibility = Visibility.Visible;
+                if(btnUpdateChild != null)
+                    btnUpdateChild.Visibility = Visibility.Visible;
+            }else if(userRole == 3){
+                if(btnAddChild != null)
+                    btnAddChild.Visibility = Visibility.Hidden;
+                if(btnDeleteChild!= null)   
+                    btnDeleteChild.Visibility = Visibility.Hidden;
+                if( btnSearchChild != null) 
+                    btnSearchChild.Visibility = Visibility.Hidden;
+                if(btnUpdateChild != null)
+                    btnUpdateChild.Visibility = Visibility.Hidden;
+
+            }
         }
 
         private void BtnAddChild_Click(object sender, RoutedEventArgs e)

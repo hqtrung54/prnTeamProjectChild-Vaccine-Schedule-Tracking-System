@@ -57,7 +57,10 @@ namespace DAL.repos
         //Search
         public List<Child> GetChildrenByCustomerId(int customerId)
         {
-            return _vaccineManagementSystem1Context.Children.Where(c => c.CustomerId== customerId).ToList();
+            return _vaccineManagementSystem1Context.Children
+                    .Where(c => c.CustomerId == customerId)
+                    .Include(c => c.Customer) // Đảm bảo rằng thông tin khách hàng được tải cùng với trẻ
+                    .ToList();
         }
 
         public bool CustomerExists(int customerId)
